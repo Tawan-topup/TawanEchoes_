@@ -6,119 +6,431 @@ Enter file contents here
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TawanEchoes Calculator</title>
+
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background: #fff0f6;
+  background: #eaf6ff;
   margin: 0;
   padding: 20px;
+  color: #34495e;
 }
+
 .card {
-  max-width: 400px;
+  max-width: 420px;
   margin: auto;
   background: white;
   padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px #f3c6dc;
+  border-radius: 22px;
+  box-shadow: 0 5px 18px #c6e4fa;
 }
+
 h1 {
   text-align: center;
-  color: #d63384;
+  color: #3698dc;
+  font-size: 29px;
 }
+
+.subtitle {
+  text-align: center;
+  color: #7aafd4;
+}
+
+.packages {
+  background: #f0f8ff;
+  border: 1px solid #d6edff;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.packages p {
+  margin: 10px 0;
+}
+
 label {
   display: block;
-  margin-top: 15px;
+  margin-top: 18px;
+  font-weight: bold;
+  color: #438bb8;
 }
-input, select, button {
+
+select, input, button {
   width: 100%;
-  padding: 12px;
-  margin-top: 8px;
-  box-sizing: border-box;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+  padding: 14px;
+  margin-top: 9px;
+  border-radius: 12px;
   font-size: 16px;
 }
+
+select, input {
+  border: 1px solid #c7e4f8;
+  background: white;
+  color: #34495e;
+}
+
+input:focus, select:focus {
+  outline: 2px solid #8bcaff;
+  border-color: #3698dc;
+}
+
 button {
-  background: #e7549b;
+  background: #55aee8;
   color: white;
   border: none;
+  font-weight: bold;
   cursor: pointer;
   margin-top: 20px;
 }
+
+button:active {
+  background: #3698dc;
+}
+
 .result {
-  background: #fff0f6;
-  padding: 15px;
+  background: #eef8ff;
+  border: 1px solid #d6edff;
+  padding: 18px;
   margin-top: 20px;
-  border-radius: 12px;
+  border-radius: 15px;
   text-align: center;
 }
-.price {
-  font-size: 28px;
-  color: #d63384;
-  font-weight: bold;
+
+.result-title {
+  color: #729dbb;
 }
+
+.price {
+  font-size: 30px;
+  color: #258aca;
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+.note {
+  font-size: 13px;
+  color: #8da9bd;
+  text-align: center;
+  margin-top: 15px;
+}
+
+#detail {
+  line-height: 1.8;
+  color: #5086ac;
+}
+
 </style>
 </head>
+
 <body>
+
 <div class="card">
+
 <h1>♡ TawanEchoes ♡</h1>
+<p class="subtitle">เครื่องคำนวณกระดุม</p>
+
+<div class="packages">
+  <strong>แพ็กเกจของร้าน</strong>
+  <p>30 บาท — 66 กระดุม</p>
+  <p>90 บาท — 203 กระดุม</p>
+  <p>145 บาท — 335 กระดุม</p>
+  <p>290 บาท — 759 กระดุม</p>
+</div>
 
 <label>เลือกวิธีคำนวณ</label>
+
 <select id="mode">
-<option value="echoes">จากจำนวน Echoes</option>
-<option value="budget">จากงบที่มี</option>
+  <option value="buttons">จากจำนวนกระดุม</option>
+  <option value="budget">จากงบที่มี</option>
 </select>
 
-<label id="label">ต้องการกี่ Echoes</label>
-<input type="number" id="amount" placeholder="เช่น 833">
+<label id="inputLabel">ต้องการกี่กระดุม</label>
 
-<label>เรทราคา (บาทต่อ Echoes)</label>
-<input type="number" id="rate" value="1" step="0.01">
+<input
+  type="number"
+  id="amount"
+  min="1"
+  placeholder="เช่น 1,388"
+>
 
-<button onclick="calculate()">✨ คำนวณเลย</button>
+<button onclick="calculate()">
+  ✨ คำนวณเลย
+</button>
 
 <div class="result">
-<p id="resultLabel">ราคาที่ต้องจ่าย</p>
-<div class="price" id="result">0 บาท</div>
+
+  <div class="result-title" id="resultTitle">
+    ราคาที่ต้องจ่าย
+  </div>
+
+  <div class="price" id="result">
+    กรุณาใส่ข้อมูล
+  </div>
+
+  <div id="detail"></div>
+
 </div>
+
+<p class="note">
+  คำนวณจากแพ็กเกจของร้าน TawanEchoes
+</p>
+
 </div>
 
 <script>
+
+const packages = [
+  { price: 30, buttons: 66 },
+  { price: 90, buttons: 203 },
+  { price: 145, buttons: 335 },
+  { price: 290, buttons: 759 }
+];
+
 const mode = document.getElementById("mode");
+const amountInput = document.getElementById("amount");
 
 mode.addEventListener("change", function() {
-  document.getElementById("label").textContent =
-    mode.value === "echoes"
-    ? "ต้องการกี่ Echoes"
-    : "งบประมาณที่มี (บาท)";
 
-  document.getElementById("resultLabel").textContent =
-    mode.value === "echoes"
-    ? "ราคาที่ต้องจ่าย"
-    : "จำนวน Echoes โดยประมาณ";
+  document.getElementById("inputLabel").textContent =
+    mode.value === "buttons"
+      ? "ต้องการกี่กระดุม"
+      : "งบประมาณที่มี (บาท)";
+
+  document.getElementById("resultTitle").textContent =
+    mode.value === "buttons"
+      ? "ราคาที่ต้องจ่าย"
+      : "จำนวนกระดุมที่ได้รับ";
+
+  document.getElementById("result").textContent =
+    "กรุณาใส่ข้อมูล";
+
+  document.getElementById("detail").textContent = "";
+
+  amountInput.value = "";
+
+  amountInput.placeholder =
+    mode.value === "buttons"
+      ? "เช่น 1,388"
+      : "เช่น 290";
+
 });
 
 function calculate() {
-  const amount = Number(document.getElementById("amount").value);
-  const rate = Number(document.getElementById("rate").value);
 
-  if (amount <= 0 || rate <= 0) {
+  const amount = Number(amountInput.value);
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+
     document.getElementById("result").textContent =
-      "กรุณาใส่ข้อมูลให้ถูกต้อง";
+      "กรุณาใส่จำนวนให้ถูกต้อง";
+
+    document.getElementById("detail").textContent = "";
+
     return;
   }
 
-  const result = mode.value === "echoes"
-    ? amount * rate
-    : amount / rate;
+  if (mode.value === "buttons") {
+    calculateButtons(Math.ceil(amount));
+  } else {
+    calculateBudget(Math.floor(amount));
+  }
 
-  document.getElementById("result").textContent =
-    result.toLocaleString("th-TH", {
-      maximumFractionDigits: 2
-    }) +
-    (mode.value === "echoes" ? " บาท" : " Echoes");
 }
+
+// คำนวณจากจำนวนกระดุมที่ต้องการ
+function calculateButtons(target) {
+
+  const maxButtons =
+    target + Math.max(...packages.map(p => p.buttons)) - 1;
+
+  const dp = Array(maxButtons + 1).fill(null);
+
+  dp[0] = {
+    cost: 0,
+    counts: [0, 0, 0, 0]
+  };
+
+  for (let b = 0; b <= maxButtons; b++) {
+
+    if (dp[b] === null) continue;
+
+    packages.forEach((p, i) => {
+
+      const nextButtons = b + p.buttons;
+
+      if (nextButtons > maxButtons) return;
+
+      const nextCost = dp[b].cost + p.price;
+
+      if (
+        dp[nextButtons] === null ||
+        nextCost < dp[nextButtons].cost
+      ) {
+
+        const counts = [...dp[b].counts];
+
+        counts[i]++;
+
+        dp[nextButtons] = {
+          cost: nextCost,
+          counts: counts
+        };
+
+      }
+
+    });
+
+  }
+
+  let best = null;
+
+  for (let b = target; b <= maxButtons; b++) {
+
+    if (dp[b] === null) continue;
+
+    if (
+      best === null ||
+      dp[b].cost < best.cost
+    ) {
+
+      best = {
+        buttons: b,
+        cost: dp[b].cost,
+        counts: dp[b].counts
+      };
+
+    }
+
+  }
+
+  if (best) {
+
+    showResult(
+      best.cost.toLocaleString("th-TH") + " บาท",
+      "ได้รับ " + best.buttons.toLocaleString("th-TH") +
+      " กระดุม",
+      best.counts
+    );
+
+  }
+
+}
+
+// คำนวณจากงบประมาณที่มี
+function calculateBudget(budget) {
+
+  if (budget > 1000000) {
+
+    document.getElementById("result").textContent =
+      "กรุณาใส่งบไม่เกิน 1,000,000 บาท";
+
+    document.getElementById("detail").textContent = "";
+
+    return;
+  }
+
+  const dp = Array(budget + 1).fill(null);
+
+  dp[0] = {
+    buttons: 0,
+    counts: [0, 0, 0, 0]
+  };
+
+  for (let cost = 0; cost <= budget; cost++) {
+
+    if (dp[cost] === null) continue;
+
+    packages.forEach((p, i) => {
+
+      const nextCost = cost + p.price;
+
+      if (nextCost > budget) return;
+
+      const nextButtons =
+        dp[cost].buttons + p.buttons;
+
+      if (
+        dp[nextCost] === null ||
+        nextButtons > dp[nextCost].buttons
+      ) {
+
+        const counts = [...dp[cost].counts];
+
+        counts[i]++;
+
+        dp[nextCost] = {
+          buttons: nextButtons,
+          counts: counts
+        };
+
+      }
+
+    });
+
+  }
+
+  let best = null;
+
+  for (let cost = 0; cost <= budget; cost++) {
+
+    if (dp[cost] === null) continue;
+
+    if (
+      best === null ||
+      dp[cost].buttons > best.buttons
+    ) {
+
+      best = {
+        buttons: dp[cost].buttons,
+        cost: cost,
+        counts: dp[cost].counts
+      };
+
+    }
+
+  }
+
+  if (best) {
+
+    showResult(
+      best.buttons.toLocaleString("th-TH") + " กระดุม",
+      "ใช้เงิน " + best.cost.toLocaleString("th-TH") + " บาท",
+      best.counts
+    );
+
+  }
+
+}
+
+// แสดงผลลัพธ์
+function showResult(main, detail, counts) {
+
+  document.getElementById("result").textContent = main;
+
+  let packageText = "";
+
+  packages.forEach((p, i) => {
+
+    if (counts[i] > 0) {
+
+      packageText +=
+        "<p>แพ็กเกจ " + p.price + " บาท × " +
+        counts[i] + "</p>";
+
+    }
+
+  });
+
+  document.getElementById("detail").innerHTML =
+    detail + packageText;
+
+}
+
 </script>
+
 </body>
-  </html>
-  
+</html>
