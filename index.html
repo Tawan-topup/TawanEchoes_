@@ -1,4 +1,5 @@
 Enter file contents here
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -277,7 +278,8 @@ button:active { transform: scale(0.98); }
 
   <a
     id="orderButton"
-    href="https://tawantopup.k2m3.com/shop/c/c-c9c4564f/echoes-%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%88%E0%B8%B3%E0%B8%99%E0%B8%A7%E0%B8%99%E0%B9%81%E0%B8%9E%E0%B8%84%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%84%E0%B8%94%E0%B9%89%E0%B9%80%E0%B8%A5%E0%B8%A2%E0%B8%84%E0%B9%88%E0%B8%B0/"target="_blank"
+    href="https://tawantopup.k2m3.com/shop/c/c-c9c4564f/echoes-%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%88%E0%B8%B3%E0%B8%99%E0%B8%A7%E0%B8%99%E0%B9%81%E0%B8%9E%E0%B8%84%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%84%E0%B8%94%E0%B9%89%E0%B9%80%E0%B8%A5%E0%B8%A2%E0%B8%84%E0%B9%88%E0%B8%B0/"
+    target="_blank"
     rel="noopener noreferrer"
     class="order-button"
   >
@@ -286,7 +288,7 @@ button:active { transform: scale(0.98); }
 
   <p class="note">
     คำนวณจากแพ็กเกจของร้าน TawanEchoes<br>
-    กดปุ่มด้านบนเพื่อไปเลือกแพคในร้าน<br>
+    กดปุ่มด้านบนเพื่อไปเลือกแพคในหมวดเติมกระดุม<br>
     กรุณาเลือกจำนวนแพคให้ตรงกับผลการคำนวณนะคะ ♡
   </p>
 
@@ -364,7 +366,6 @@ function showError(message) {
   document.getElementById("detail").textContent = "";
 }
 
-// DP สำหรับแพ็กเกจเล็ก: หาราคาถูกที่สุดที่ได้กระดุมถึงเป้าหมาย
 function buildSmallButtonDP(maxButtons) {
   const size = maxButtons + 1;
   const costs = new Int32Array(size).fill(-1);
@@ -402,7 +403,6 @@ function buildSmallButtonDP(maxButtons) {
   return { costs, c30, c90, c145 };
 }
 
-// คำนวณจากจำนวนกระดุมที่ต้องการ
 function calculateButtons(target) {
   const maxButtons = target + 334;
   const dp = buildSmallButtonDP(maxButtons);
@@ -464,7 +464,6 @@ function calculateButtons(target) {
   }
 }
 
-// คำนวณแพ็กเกจเล็กตามงบ แล้วเก็บผลที่ดีที่สุดของทุกงบ
 function buildSmallBudgetDP(budget) {
   const buttons = new Int32Array(budget + 1).fill(-1);
   const c30 = new Int32Array(budget + 1);
@@ -498,7 +497,6 @@ function buildSmallBudgetDP(budget) {
     }
   }
 
-  // เก็บคำตอบที่ดีที่สุดเมื่อมีงบไม่เกินแต่ละจำนวน
   const bestButtons = new Int32Array(budget + 1).fill(-1);
   const bestCost = new Int32Array(budget + 1);
   const best30 = new Int32Array(budget + 1);
@@ -537,7 +535,6 @@ function buildSmallBudgetDP(budget) {
   };
 }
 
-// คำนวณจากงบประมาณที่มี
 function calculateBudget(budget) {
   const dp = buildSmallBudgetDP(budget);
 
@@ -586,7 +583,6 @@ function calculateBudget(budget) {
   }
 }
 
-// แสดงผลลัพธ์ พร้อมบอกจำนวนแพคที่ต้องเลือกในร้าน
 function showResult(main, detail, smallCounts, bigCount, bigPrice) {
   document.getElementById("result").textContent = main;
 
@@ -622,4 +618,5 @@ function showResult(main, detail, smallCounts, bigCount, bigPrice) {
 </script>
 
 </body>
-</html>
+  </html>
+  
