@@ -97,7 +97,7 @@ h1 {
   margin-top: 13px;
   color: #5086ac;
   font-size: 13px;
-  line-height: 1.9;
+  line-height: 1.7;
 }
 
 .rate-box strong { color: #258aca; }
@@ -238,16 +238,16 @@ button:active { transform: scale(0.98); }
     </div>
 
     <div class="package-item">
-      <span>แพ็กเกจ 290 บาท</span>
+      <span>290 บาท</span>
       <span>759 กระดุม</span>
     </div>
 
     <div class="rate-box">
-      <strong>♡ เรทราคาพิเศษแพ็กเกจ 290 บาท</strong><br>
-      1–9 แพ็กเกจ : 290 บาท/แพ็กเกจ<br>
-      10–19 แพ็กเกจ : 287 บาท/แพ็กเกจ<br>
-      20–29 แพ็กเกจ : 285 บาท/แพ็กเกจ<br>
-      30 แพ็กเกจขึ้นไป : 283 บาท/แพ็กเกจ
+      <strong>♡ เรทราคาพิเศษ</strong><br>
+      1–9 แพค : 290 บาท/แพค<br>
+      10–19 แพค : 287 บาท/แพค<br>
+      20–29 แพค : 285 บาท/แพค<br>
+      30 แพคขึ้นไป : 283 บาท/แพค
     </div>
   </div>
 
@@ -277,7 +277,7 @@ button:active { transform: scale(0.98); }
 
   <a
     id="orderButton"
-    href="https://tawantopup.k2m3.com/shop/c/c-c9c4564f/echoes-%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%88%E0%B8%B3%E0%B8%99%E0%B8%A7%E0%B8%99%E0%B9%81%E0%B8%9E%E0%B8%84%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%84%E0%B8%94%E0%B9%89%E0%B9%80%E0%B8%A5%E0%B8%A2%E0%B8%84%E0%B9%88%E0%B8%B0/"
+    href="https://tawantopup.k2m3.com/shop/c/c-c9c4564f/echoes-%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%88%E0%B8%B3%E0%B8%99%E0%B8%A7%E0%B8%99%E0%B9%81%E0%B8%9E%E0%B8%84%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%84%E0%B9%88%E0%B8%B0/"
     target="_blank"
     rel="noopener noreferrer"
     class="order-button"
@@ -596,7 +596,7 @@ function showResult(main, detail, smallCounts, bigCount, bigPrice) {
   packages.forEach((p, i) => {
     if (smallCounts[i] > 0) {
       packageText +=
-        "<p>แพคเกจ " + p.price + " บาท × " +
+        "<p>แพค " + p.price + " บาท × " +
         smallCounts[i] + " แพค</p>";
     }
   });
@@ -605,7 +605,7 @@ function showResult(main, detail, smallCounts, bigCount, bigPrice) {
     const totalBigPrice = bigCount * bigPrice;
 
     packageText +=
-      "<p><strong>แพค 759 กระดุม × " + bigCount +
+      "<p><strong>759 กระดุม × " + bigCount +
       " แพค</strong></p>" +
       "<p>ราคาแพคละ " + bigPrice.toLocaleString("th-TH") +
       " บาท</p>" +
@@ -623,4 +623,4 @@ function showResult(main, detail, smallCounts, bigCount, bigPrice) {
 </script>
 
 </body>
-          </html>
+</html>
