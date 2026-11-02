@@ -1,0 +1,124 @@
+Enter file contents here
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TawanEchoes Calculator</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #fff0f6;
+  margin: 0;
+  padding: 20px;
+}
+.card {
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px #f3c6dc;
+}
+h1 {
+  text-align: center;
+  color: #d63384;
+}
+label {
+  display: block;
+  margin-top: 15px;
+}
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+button {
+  background: #e7549b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.result {
+  background: #fff0f6;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+.price {
+  font-size: 28px;
+  color: #d63384;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>♡ TawanEchoes ♡</h1>
+
+<label>เลือกวิธีคำนวณ</label>
+<select id="mode">
+<option value="echoes">จากจำนวน Echoes</option>
+<option value="budget">จากงบที่มี</option>
+</select>
+
+<label id="label">ต้องการกี่ Echoes</label>
+<input type="number" id="amount" placeholder="เช่น 833">
+
+<label>เรทราคา (บาทต่อ Echoes)</label>
+<input type="number" id="rate" value="1" step="0.01">
+
+<button onclick="calculate()">✨ คำนวณเลย</button>
+
+<div class="result">
+<p id="resultLabel">ราคาที่ต้องจ่าย</p>
+<div class="price" id="result">0 บาท</div>
+</div>
+</div>
+
+<script>
+const mode = document.getElementById("mode");
+
+mode.addEventListener("change", function() {
+  document.getElementById("label").textContent =
+    mode.value === "echoes"
+    ? "ต้องการกี่ Echoes"
+    : "งบประมาณที่มี (บาท)";
+
+  document.getElementById("resultLabel").textContent =
+    mode.value === "echoes"
+    ? "ราคาที่ต้องจ่าย"
+    : "จำนวน Echoes โดยประมาณ";
+});
+
+function calculate() {
+  const amount = Number(document.getElementById("amount").value);
+  const rate = Number(document.getElementById("rate").value);
+
+  if (amount <= 0 || rate <= 0) {
+    document.getElementById("result").textContent =
+      "กรุณาใส่ข้อมูลให้ถูกต้อง";
+    return;
+  }
+
+  const result = mode.value === "echoes"
+    ? amount * rate
+    : amount / rate;
+
+  document.getElementById("result").textContent =
+    result.toLocaleString("th-TH", {
+      maximumFractionDigits: 2
+    }) +
+    (mode.value === "echoes" ? " บาท" : " Echoes");
+}
+</script>
+</body>
+  </html>
+  
