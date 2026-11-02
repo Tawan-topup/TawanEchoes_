@@ -1,6 +1,5 @@
 Enter file contents here
-
-          <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
@@ -84,6 +83,7 @@ h1 {
 }
 
 .package-item span:first-child { color: #5c91b8; }
+
 .package-item span:last-child {
   color: #258aca;
   font-weight: bold;
@@ -277,17 +277,18 @@ button:active { transform: scale(0.98); }
 
   <a
     id="orderButton"
-    href="https://tawantopup.k2m3.com/shop"
+    href="https://tawantopup.k2m3.com/shop/c/c-c9c4564f/echoes-%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%88%E0%B8%B3%E0%B8%99%E0%B8%A7%E0%B8%99%E0%B9%81%E0%B8%9E%E0%B8%84%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%84%E0%B8%94%E0%B9%89%E0%B9%80%E0%B8%A5%E0%B8%A2%E0%B8%84%E0%B9%88%E0%B8%B0/"
     target="_blank"
     rel="noopener noreferrer"
     class="order-button"
   >
-    🛒 สั่งซื้อที่ร้าน TawanTopup
+    🛒 ไปเลือกแพคในร้าน
   </a>
 
   <p class="note">
     คำนวณจากแพ็กเกจของร้าน TawanEchoes<br>
-    กดปุ่มสั่งซื้อเพื่อไปยังเว็บไซต์หลักของร้าน
+    กดปุ่มด้านบนเพื่อไปเลือกแพคในร้าน<br>
+    กรุณาเลือกจำนวนแพคให้ตรงกับผลการคำนวณนะคะ ♡
   </p>
 
   <div class="footer">Made with ♡ by TawanEchoes</div>
@@ -345,6 +346,7 @@ function calculate() {
       showError("กรุณาใส่จำนวนกระดุมไม่เกิน 1,000,000");
       return;
     }
+
     calculateButtons(Math.ceil(amount));
   } else {
     const budget = Math.floor(amount);
@@ -384,6 +386,7 @@ function buildSmallButtonDP(maxButtons) {
 
     for (const p of smallPackages) {
       const next = b + p.buttons;
+
       if (next > maxButtons) continue;
 
       const nextCost = costs[b] + p.price;
@@ -482,6 +485,7 @@ function buildSmallBudgetDP(budget) {
 
     for (const p of smallPackages) {
       const nextCost = cost + p.price;
+
       if (nextCost > budget) continue;
 
       const nextButtons = buttons[cost] + p.buttons;
@@ -509,7 +513,9 @@ function buildSmallBudgetDP(budget) {
   for (let cost = 0; cost <= budget; cost++) {
     if (
       buttons[cost] > currentBest ||
-      (buttons[cost] === currentBest && buttons[cost] !== -1 && cost < currentCost)
+      (buttons[cost] === currentBest &&
+       buttons[cost] !== -1 &&
+       cost < currentCost)
     ) {
       currentBest = buttons[cost];
       currentCost = cost;
@@ -523,7 +529,13 @@ function buildSmallBudgetDP(budget) {
     best145[cost] = currentCounts[2];
   }
 
-  return { bestButtons, bestCost, best30, best90, best145 };
+  return {
+    bestButtons,
+    bestCost,
+    best30,
+    best90,
+    best145
+  };
 }
 
 // คำนวณจากงบประมาณที่มี
@@ -539,6 +551,7 @@ function calculateBudget(budget) {
     const remainingBudget = budget - bigCost;
 
     const smallButtons = dp.bestButtons[remainingBudget];
+
     if (smallButtons < 0) continue;
 
     const totalButtons = bigCount * BIG_BUTTONS + smallButtons;
@@ -574,7 +587,7 @@ function calculateBudget(budget) {
   }
 }
 
-// แสดงผลลัพธ์
+// แสดงผลลัพธ์ พร้อมบอกจำนวนแพคที่ต้องเลือกในร้าน
 function showResult(main, detail, smallCounts, bigCount, bigPrice) {
   document.getElementById("result").textContent = main;
 
@@ -583,15 +596,25 @@ function showResult(main, detail, smallCounts, bigCount, bigPrice) {
   packages.forEach((p, i) => {
     if (smallCounts[i] > 0) {
       packageText +=
-        "<p>แพ็กเกจ " + p.price + " บาท × " +
-        smallCounts[i] + "</p>";
+        "<p>แพคเกจ " + p.price + " บาท × " +
+        smallCounts[i] + " แพค</p>";
     }
   });
 
   if (bigCount > 0) {
+    const totalBigPrice = bigCount * bigPrice;
+
     packageText +=
-      "<p>แพ็กเกจ 759 กระดุม × " + bigCount +
-      " (เรท " + bigPrice + " บาท/แพ็กเกจ)</p>";
+      "<p><strong>แพค 759 กระดุม × " + bigCount +
+      " แพค</strong></p>" +
+      "<p>ราคาแพคละ " + bigPrice.toLocaleString("th-TH") +
+      " บาท</p>" +
+      "<p>รวมราคาแพค 759: " +
+      totalBigPrice.toLocaleString("th-TH") +
+      " บาท</p>" +
+      "<p style='color:#258aca;font-weight:bold'>" +
+      "♡ ไปที่หมวด Echoes แล้วเลือกแพค 759 จำนวน " +
+      bigCount + " แพค ♡</p>";
   }
 
   document.getElementById("detail").innerHTML =
@@ -600,4 +623,4 @@ function showResult(main, detail, smallCounts, bigCount, bigPrice) {
 </script>
 
 </body>
-  </html>
+          </html>
