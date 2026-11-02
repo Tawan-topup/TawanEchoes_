@@ -1,369 +1,603 @@
 Enter file contents here
 
-<!DOCTYPE html>
+          <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TawanEchoes | Echoes Calculator</title>
+
+<title>TawanEchoes | Button Calculator</title>
 
 <style>
-:root {
-  --pink: #ed65ad;
-  --pink2: #fbe5f1;
-  --text: #51364a;
-  --muted: #8d7484;
-}
-
 * { box-sizing: border-box; }
 
 body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #eaf6ff, #f8fcff);
   margin: 0;
-  padding: 22px 14px;
-  background: linear-gradient(135deg,#fff4fa,#f9e5f4);
-  font-family: Arial,"Noto Sans Thai",sans-serif;
-  color: var(--text);
+  padding: 20px;
+  color: #34495e;
 }
 
 .card {
   max-width: 440px;
-  margin: 20px auto;
+  margin: auto;
   background: white;
-  border: 1px solid #f5d6e8;
-  border-radius: 24px;
-  padding: 24px;
-  box-shadow: 0 12px 35px #e7b9d233;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px #c6e4fa;
+  border: 1px solid #e0f2ff;
 }
 
-.brand {
+.logo {
   text-align: center;
-  color: var(--pink);
-  font-weight: 800;
-  font-size: 19px;
+  font-size: 36px;
+  margin-bottom: 5px;
 }
 
 h1 {
   text-align: center;
-  color: #d84c99;
-  font-size: 27px;
-  margin: 10px 0 22px;
+  color: #3698dc;
+  font-size: 29px;
+  margin: 8px 0;
 }
+
+.subtitle {
+  text-align: center;
+  color: #7aafd4;
+  margin-bottom: 20px;
+}
+
+.tag {
+  display: inline-block;
+  background: #eaf6ff;
+  color: #3698dc;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.packages {
+  background: #f0f8ff;
+  border: 1px solid #d6edff;
+  border-radius: 18px;
+  padding: 17px;
+  margin: 20px 0;
+}
+
+.packages strong {
+  color: #258aca;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.package-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  background: white;
+  border-radius: 10px;
+  padding: 11px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.package-item span:first-child { color: #5c91b8; }
+.package-item span:last-child {
+  color: #258aca;
+  font-weight: bold;
+}
+
+.rate-box {
+  background: #fff;
+  border: 1px dashed #9bcdf0;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 13px;
+  color: #5086ac;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.rate-box strong { color: #258aca; }
 
 label {
   display: block;
-  font-weight: 700;
-  margin: 16px 0 8px;
+  margin-top: 18px;
+  font-weight: bold;
+  color: #438bb8;
 }
 
-input, select {
+select, input, button {
   width: 100%;
   padding: 14px;
-  border: 1px solid #ead6e2;
+  margin-top: 9px;
   border-radius: 13px;
-  background: white;
   font-size: 16px;
-  color: var(--text);
+}
+
+select, input {
+  border: 1px solid #c7e4f8;
+  background: white;
+  color: #34495e;
+}
+
+input:focus, select:focus {
+  outline: 2px solid #8bcaff;
+  border-color: #3698dc;
 }
 
 button {
-  width: 100%;
-  border: 0;
-  border-radius: 14px;
-  padding: 14px;
-  background: var(--pink);
+  background: linear-gradient(135deg, #55aee8, #8bbdff);
   color: white;
-  font-weight: 700;
-  font-size: 17px;
-  margin-top: 20px;
+  border: none;
+  font-weight: bold;
   cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px #c6e4fa;
 }
+
+button:active { transform: scale(0.98); }
 
 .result {
+  background: #eef8ff;
+  border: 1px solid #d6edff;
+  padding: 20px;
   margin-top: 20px;
+  border-radius: 18px;
   text-align: center;
-  background: var(--pink2);
-  border-radius: 16px;
-  padding: 18px;
 }
 
-.result small { color: var(--muted); }
+.result-title {
+  color: #729dbb;
+  font-size: 14px;
+}
 
 .price {
   font-size: 30px;
-  font-weight: 800;
-  color: #d83d91;
-  margin-top: 5px;
-  overflow-wrap: anywhere;
+  color: #258aca;
+  font-weight: bold;
+  margin: 12px 0;
 }
 
-.detail {
-  margin-top: 14px;
+#detail {
   line-height: 1.8;
-  font-size: 14px;
-  white-space: pre-line;
+  color: #5086ac;
+}
+
+#detail p { margin: 5px 0; }
+
+.order-button {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  background: linear-gradient(135deg, #75c7ff, #9cbbff);
+  color: white;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px #c6e4fa;
+  transition: 0.2s;
+}
+
+.order-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px #b5ddfa;
 }
 
 .note {
-  text-align: center;
   font-size: 12px;
-  color: var(--muted);
-  margin-top: 16px;
+  color: #8da9bd;
+  text-align: center;
+  margin-top: 18px;
+  line-height: 1.7;
+}
+
+.footer {
+  text-align: center;
+  color: #9bbbd2;
+  font-size: 12px;
+  margin-top: 20px;
 }
 </style>
 </head>
 
 <body>
-<main class="card">
 
-  <div class="brand">♡ Tawan Top up ♡</div>
-  <h1>คำนวณ Echoes</h1>
+<div class="card">
 
-  <label for="mode">เลือกวิธีคำนวณ</label>
-  <select id="mode">
-    <option value="echoes">จากจำนวน Echoes</option>
-    <option value="budget">จากงบที่มี (บาท)</option>
-  </select>
+  <div class="logo">♡</div>
 
-  <label id="amountLabel" for="amount">
-    ต้องการกี่ Echoes
-  </label>
+  <h1>TawanEchoes</h1>
 
-  <input
-    id="amount"
-    type="number"
-    min="1"
-    placeholder="เช่น 1518"
-  >
+  <p class="subtitle">เครื่องคำนวณกระดุม Identity V</p>
 
-  <button id="calculate">✨ คำนวณเลย</button>
-
-  <div class="result" aria-live="polite">
-    <small id="resultLabel">ราคาที่ต้องจ่าย</small>
-    <div class="price" id="result">—</div>
-    <div class="detail" id="detail"></div>
+  <div style="text-align:center">
+    <span class="tag">✦ Cute Button Calculator ✦</span>
   </div>
 
+  <div class="packages">
+    <strong>♡ แพ็กเกจของร้าน ♡</strong>
+
+    <div class="package-item">
+      <span>30 บาท</span>
+      <span>66 กระดุม</span>
+    </div>
+
+    <div class="package-item">
+      <span>90 บาท</span>
+      <span>203 กระดุม</span>
+    </div>
+
+    <div class="package-item">
+      <span>145 บาท</span>
+      <span>335 กระดุม</span>
+    </div>
+
+    <div class="package-item">
+      <span>แพ็กเกจ 290 บาท</span>
+      <span>759 กระดุม</span>
+    </div>
+
+    <div class="rate-box">
+      <strong>♡ เรทราคาพิเศษแพ็กเกจ 290 บาท</strong><br>
+      1–9 แพ็กเกจ : 290 บาท/แพ็กเกจ<br>
+      10–19 แพ็กเกจ : 287 บาท/แพ็กเกจ<br>
+      20–29 แพ็กเกจ : 285 บาท/แพ็กเกจ<br>
+      30 แพ็กเกจขึ้นไป : 283 บาท/แพ็กเกจ
+    </div>
+  </div>
+
+  <label>เลือกวิธีคำนวณ</label>
+
+  <select id="mode">
+    <option value="buttons">จากจำนวนกระดุม</option>
+    <option value="budget">จากงบที่มี</option>
+  </select>
+
+  <label id="inputLabel">ต้องการกี่กระดุม</label>
+
+  <input
+    type="number"
+    id="amount"
+    min="1"
+    placeholder="เช่น 1,388"
+  >
+
+  <button onclick="calculate()">✨ คำนวณเลย</button>
+
+  <div class="result">
+    <div class="result-title" id="resultTitle">ราคาที่ต้องจ่าย</div>
+    <div class="price" id="result">กรุณาใส่ข้อมูล</div>
+    <div id="detail"></div>
+  </div>
+
+  <a
+    id="orderButton"
+    href="https://tawantopup.k2m3.com/shop"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="order-button"
+  >
+    🛒 สั่งซื้อที่ร้าน TawanTopup
+  </a>
+
   <p class="note">
-    โปรดตรวจสอบราคาและจำนวน Echoes ก่อนสั่งซื้อ • TawanEchoes
+    คำนวณจากแพ็กเกจของร้าน TawanEchoes<br>
+    กดปุ่มสั่งซื้อเพื่อไปยังเว็บไซต์หลักของร้าน
   </p>
 
-</main>
+  <div class="footer">Made with ♡ by TawanEchoes</div>
+
+</div>
 
 <script>
 const packages = [
-  { price: 30, echoes: 66, name: "30 บาท" },
-  { price: 90, echoes: 203, name: "90 บาท" },
-  { price: 145, echoes: 335, name: "145 บาท" }
+  { price: 30, buttons: 66 },
+  { price: 90, buttons: 203 },
+  { price: 145, buttons: 335 }
 ];
 
-const BIG_PACKAGE = 759;
+const BIG_BUTTONS = 759;
 
-function getBigPackagePrice(count) {
+const mode = document.getElementById("mode");
+const amountInput = document.getElementById("amount");
+
+function getBigPrice(count) {
   if (count >= 30) return 283;
   if (count >= 20) return 285;
   if (count >= 10) return 287;
   return 290;
 }
 
-// คำนวณจำนวนแพ็กอื่นที่คุ้มที่สุด
-function findBestSmallPackages(target) {
-  const dp = Array(target + 1).fill(null);
-  dp[0] = { cost: 0, counts: [0, 0, 0], echoes: 0 };
+mode.addEventListener("change", function() {
+  document.getElementById("inputLabel").textContent =
+    mode.value === "buttons"
+      ? "ต้องการกี่กระดุม"
+      : "งบประมาณที่มี (บาท)";
 
-  for (let i = 0; i <= target; i++) {
-    if (!dp[i]) continue;
+  document.getElementById("resultTitle").textContent =
+    mode.value === "buttons"
+      ? "ราคาที่ต้องจ่าย"
+      : "จำนวนกระดุมที่ได้รับ";
 
-    for (let p = 0; p < packages.length; p++) {
-      const item = packages[p];
-      const next = i + item.echoes;
+  document.getElementById("result").textContent = "กรุณาใส่ข้อมูล";
+  document.getElementById("detail").textContent = "";
+  amountInput.value = "";
 
-      if (next > target) continue;
-
-      const counts = [...dp[i].counts];
-      counts[p]++;
-
-      const candidate = {
-        cost: dp[i].cost + item.price,
-        counts,
-        echoes: next
-      };
-
-      if (!dp[next] || candidate.cost < dp[next].cost) {
-        dp[next] = candidate;
-      }
-    }
-  }
-
-  return dp;
-}
-
-// หาชุดแพ็กที่ราคาถูกที่สุด
-function calculateBest(target) {
-  let best = null;
-
-  const maxBig = Math.ceil(target / BIG_PACKAGE) + 1;
-
-  for (let bigCount = 0; bigCount <= maxBig; bigCount++) {
-    const bigEchoes = bigCount * BIG_PACKAGE;
-    const remaining = Math.max(0, target - bigEchoes);
-
-    const dp = findBestSmallPackages(remaining);
-
-    // เลือกจำนวนแพ็กเล็กที่ทำให้ได้ Echoes ถึงเป้าหมาย
-    for (let i = remaining; i < dp.length; i++) {
-      if (!dp[i]) continue;
-
-      const bigPrice = getBigPackagePrice(bigCount);
-      const totalCost = dp[i].cost + bigCount * bigPrice;
-      const totalEchoes = bigEchoes + i;
-
-      const candidate = {
-        bigCount,
-        bigPrice,
-        smallCounts: dp[i].counts,
-        totalCost,
-        totalEchoes
-      };
-
-      if (
-        !best ||
-        candidate.totalCost < best.totalCost ||
-        (
-          candidate.totalCost === best.totalCost &&
-          candidate.totalEchoes < best.totalEchoes
-        )
-      ) {
-        best = candidate;
-      }
-    }
-  }
-
-  return best;
-}
-
-const mode = document.getElementById("mode");
-const amount = document.getElementById("amount");
-const amountLabel = document.getElementById("amountLabel");
-const resultLabel = document.getElementById("resultLabel");
-const result = document.getElementById("result");
-const detail = document.getElementById("detail");
-
-mode.addEventListener("change", () => {
-  const budgetMode = mode.value === "budget";
-
-  amountLabel.textContent = budgetMode
-    ? "งบประมาณที่มี (บาท)"
-    : "ต้องการกี่ Echoes";
-
-  amount.placeholder = budgetMode
-    ? "เช่น 580"
-    : "เช่น 1518";
-
-  resultLabel.textContent = budgetMode
-    ? "จำนวน Echoes โดยประมาณ"
-    : "ราคาที่ต้องจ่าย";
-
-  result.textContent = "—";
-  detail.textContent = "";
+  amountInput.placeholder =
+    mode.value === "buttons" ? "เช่น 1,388" : "เช่น 290";
 });
 
-document.getElementById("calculate").addEventListener("click", () => {
-  const value = Number(amount.value);
+function calculate() {
+  const amount = Number(amountInput.value);
 
-  if (!Number.isFinite(value) || value <= 0) {
-    result.textContent = "กรุณากรอกจำนวนให้ถูกต้อง";
-    detail.textContent = "";
+  if (!Number.isFinite(amount) || amount <= 0) {
+    showError("กรุณาใส่จำนวนให้ถูกต้อง");
     return;
   }
 
-  if (mode.value === "budget") {
-    // คำนวณจำนวน Echoes สูงสุดจากงบประมาณ
-    const maxBudget = Math.floor(value);
-    let best = { echoes: 0, cost: 0, detail: "" };
+  if (mode.value === "buttons") {
+    if (amount > 1000000) {
+      showError("กรุณาใส่จำนวนกระดุมไม่เกิน 1,000,000");
+      return;
+    }
+    calculateButtons(Math.ceil(amount));
+  } else {
+    const budget = Math.floor(amount);
 
-    for (let bigCount = 0; bigCount <= Math.floor(maxBudget / 283); bigCount++) {
-      const bigPrice = getBigPackagePrice(bigCount);
-      const remainingBudget = maxBudget - bigCount * bigPrice;
+    if (budget > 1000000) {
+      showError("กรุณาใส่งบไม่เกิน 1,000,000 บาท");
+      return;
+    }
 
-      const maxSmallEchoes = Math.floor(remainingBudget / 30) * 335;
-      const dp = findBestSmallPackages(maxSmallEchoes);
+    calculateBudget(budget);
+  }
+}
 
-      for (let i = 0; i < dp.length; i++) {
-        if (!dp[i]) continue;
+function showError(message) {
+  document.getElementById("result").textContent = message;
+  document.getElementById("detail").textContent = "";
+}
 
-        const totalCost = bigCount * bigPrice + dp[i].cost;
-        const totalEchoes = bigCount * BIG_PACKAGE + i;
+// DP สำหรับแพ็กเกจเล็ก: หาราคาถูกที่สุดที่ได้กระดุมถึงเป้าหมาย
+function buildSmallButtonDP(maxButtons) {
+  const size = maxButtons + 1;
+  const costs = new Int32Array(size).fill(-1);
+  const c30 = new Int32Array(size);
+  const c90 = new Int32Array(size);
+  const c145 = new Int32Array(size);
 
-        if (
-          totalCost <= maxBudget &&
-          totalEchoes > best.echoes
-        ) {
-          best = {
-            echoes: totalEchoes,
-            cost: totalCost,
-            bigCount,
-            bigPrice,
-            smallCounts: dp[i].counts
-          };
-        }
+  costs[0] = 0;
+
+  const smallPackages = [
+    { price: 30, buttons: 66, index: 0 },
+    { price: 90, buttons: 203, index: 1 },
+    { price: 145, buttons: 335, index: 2 }
+  ];
+
+  for (let b = 0; b <= maxButtons; b++) {
+    if (costs[b] === -1) continue;
+
+    for (const p of smallPackages) {
+      const next = b + p.buttons;
+      if (next > maxButtons) continue;
+
+      const nextCost = costs[b] + p.price;
+
+      if (costs[next] === -1 || nextCost < costs[next]) {
+        costs[next] = nextCost;
+        c30[next] = c30[b] + (p.index === 0 ? 1 : 0);
+        c90[next] = c90[b] + (p.index === 1 ? 1 : 0);
+        c145[next] = c145[b] + (p.index === 2 ? 1 : 0);
+      }
+    }
+  }
+
+  return { costs, c30, c90, c145 };
+}
+
+// คำนวณจากจำนวนกระดุมที่ต้องการ
+function calculateButtons(target) {
+  const maxButtons = target + 334;
+  const dp = buildSmallButtonDP(maxButtons);
+
+  let best = null;
+  const maxBigCount = Math.ceil(target / BIG_BUTTONS);
+
+  for (let bigCount = 0; bigCount <= maxBigCount; bigCount++) {
+    const bigPrice = getBigPrice(bigCount);
+    const bigCost = bigCount * bigPrice;
+    const remaining = Math.max(0, target - bigCount * BIG_BUTTONS);
+
+    let smallBest = null;
+
+    for (let b = remaining; b <= remaining + 334; b++) {
+      if (dp.costs[b] === -1) continue;
+
+      if (
+        smallBest === null ||
+        dp.costs[b] < smallBest.cost ||
+        (dp.costs[b] === smallBest.cost && b > smallBest.buttons)
+      ) {
+        smallBest = {
+          cost: dp.costs[b],
+          buttons: b,
+          counts: [dp.c30[b], dp.c90[b], dp.c145[b]]
+        };
       }
     }
 
-    result.textContent =
-      best.echoes.toLocaleString("th-TH") + " Echoes";
+    if (smallBest === null) continue;
 
-    detail.textContent =
-      "ใช้เงิน " + best.cost.toLocaleString("th-TH") + " บาท\n" +
-      (best.bigCount > 0
-        ? "แพ็ก 759 ปุ่ม × " + best.bigCount +
-          " = " + (best.bigCount * best.bigPrice) + " บาท\n"
-        : "") +
-      packages.map((p, i) =>
-        p.name + " × " + best.smallCounts[i]
-      ).join("\n");
+    const totalCost = bigCost + smallBest.cost;
+    const totalButtons = bigCount * BIG_BUTTONS + smallBest.buttons;
 
-    return;
+    if (
+      best === null ||
+      totalCost < best.cost ||
+      (totalCost === best.cost && totalButtons > best.buttons)
+    ) {
+      best = {
+        cost: totalCost,
+        buttons: totalButtons,
+        bigCount,
+        bigPrice,
+        smallCounts: smallBest.counts
+      };
+    }
   }
 
-  const target = Math.ceil(value);
-  const best = calculateBest(target);
-
-  if (!best) {
-    result.textContent = "ไม่สามารถคำนวณได้";
-    detail.textContent = "";
-    return;
-  }
-
-  result.textContent =
-    best.totalCost.toLocaleString("th-TH") + " บาท";
-
-  let lines = [];
-
-  if (best.bigCount > 0) {
-    lines.push(
-      "แพ็ก 759 ปุ่ม × " + best.bigCount +
-      " = " + (best.bigCount * best.bigPrice) +
-      " บาท (" + best.bigPrice + " บาท/แพ็ก)"
+  if (best) {
+    showResult(
+      best.cost.toLocaleString("th-TH") + " บาท",
+      "ได้รับ " + best.buttons.toLocaleString("th-TH") + " กระดุม",
+      best.smallCounts,
+      best.bigCount,
+      best.bigPrice
     );
   }
+}
+
+// คำนวณแพ็กเกจเล็กตามงบ แล้วเก็บผลที่ดีที่สุดของทุกงบ
+function buildSmallBudgetDP(budget) {
+  const buttons = new Int32Array(budget + 1).fill(-1);
+  const c30 = new Int32Array(budget + 1);
+  const c90 = new Int32Array(budget + 1);
+  const c145 = new Int32Array(budget + 1);
+
+  buttons[0] = 0;
+
+  const smallPackages = [
+    { price: 30, buttons: 66, index: 0 },
+    { price: 90, buttons: 203, index: 1 },
+    { price: 145, buttons: 335, index: 2 }
+  ];
+
+  for (let cost = 0; cost <= budget; cost++) {
+    if (buttons[cost] === -1) continue;
+
+    for (const p of smallPackages) {
+      const nextCost = cost + p.price;
+      if (nextCost > budget) continue;
+
+      const nextButtons = buttons[cost] + p.buttons;
+
+      if (nextButtons > buttons[nextCost]) {
+        buttons[nextCost] = nextButtons;
+        c30[nextCost] = c30[cost] + (p.index === 0 ? 1 : 0);
+        c90[nextCost] = c90[cost] + (p.index === 1 ? 1 : 0);
+        c145[nextCost] = c145[cost] + (p.index === 2 ? 1 : 0);
+      }
+    }
+  }
+
+  // เก็บคำตอบที่ดีที่สุดเมื่อมีงบไม่เกินแต่ละจำนวน
+  const bestButtons = new Int32Array(budget + 1).fill(-1);
+  const bestCost = new Int32Array(budget + 1);
+  const best30 = new Int32Array(budget + 1);
+  const best90 = new Int32Array(budget + 1);
+  const best145 = new Int32Array(budget + 1);
+
+  let currentBest = -1;
+  let currentCost = 0;
+  let currentCounts = [0, 0, 0];
+
+  for (let cost = 0; cost <= budget; cost++) {
+    if (
+      buttons[cost] > currentBest ||
+      (buttons[cost] === currentBest && buttons[cost] !== -1 && cost < currentCost)
+    ) {
+      currentBest = buttons[cost];
+      currentCost = cost;
+      currentCounts = [c30[cost], c90[cost], c145[cost]];
+    }
+
+    bestButtons[cost] = currentBest;
+    bestCost[cost] = currentCost;
+    best30[cost] = currentCounts[0];
+    best90[cost] = currentCounts[1];
+    best145[cost] = currentCounts[2];
+  }
+
+  return { bestButtons, bestCost, best30, best90, best145 };
+}
+
+// คำนวณจากงบประมาณที่มี
+function calculateBudget(budget) {
+  const dp = buildSmallBudgetDP(budget);
+
+  let best = null;
+  const maxBigCount = Math.floor(budget / 283);
+
+  for (let bigCount = 0; bigCount <= maxBigCount; bigCount++) {
+    const bigPrice = getBigPrice(bigCount);
+    const bigCost = bigCount * bigPrice;
+    const remainingBudget = budget - bigCost;
+
+    const smallButtons = dp.bestButtons[remainingBudget];
+    if (smallButtons < 0) continue;
+
+    const totalButtons = bigCount * BIG_BUTTONS + smallButtons;
+    const totalCost = bigCost + dp.bestCost[remainingBudget];
+
+    if (
+      best === null ||
+      totalButtons > best.buttons ||
+      (totalButtons === best.buttons && totalCost < best.cost)
+    ) {
+      best = {
+        buttons: totalButtons,
+        cost: totalCost,
+        bigCount,
+        bigPrice,
+        smallCounts: [
+          dp.best30[remainingBudget],
+          dp.best90[remainingBudget],
+          dp.best145[remainingBudget]
+        ]
+      };
+    }
+  }
+
+  if (best) {
+    showResult(
+      best.buttons.toLocaleString("th-TH") + " กระดุม",
+      "ใช้เงิน " + best.cost.toLocaleString("th-TH") + " บาท",
+      best.smallCounts,
+      best.bigCount,
+      best.bigPrice
+    );
+  }
+}
+
+// แสดงผลลัพธ์
+function showResult(main, detail, smallCounts, bigCount, bigPrice) {
+  document.getElementById("result").textContent = main;
+
+  let packageText = "";
 
   packages.forEach((p, i) => {
-    if (best.smallCounts[i] > 0) {
-      lines.push(
-        p.name + " × " + best.smallCounts[i] +
-        " = " + (p.price * best.smallCounts[i]) + " บาท"
-      );
+    if (smallCounts[i] > 0) {
+      packageText +=
+        "<p>แพ็กเกจ " + p.price + " บาท × " +
+        smallCounts[i] + "</p>";
     }
   });
 
-  lines.push(
-    "รวม " + best.totalEchoes.toLocaleString("th-TH") +
-    " Echoes"
-  );
+  if (bigCount > 0) {
+    packageText +=
+      "<p>แพ็กเกจ 759 กระดุม × " + bigCount +
+      " (เรท " + bigPrice + " บาท/แพ็กเกจ)</p>";
+  }
 
-  detail.textContent = lines.join("\n");
-});
+  document.getElementById("detail").innerHTML =
+    detail + packageText;
+}
 </script>
 
 </body>
-</html>
+  </html>
