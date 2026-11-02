@@ -90,19 +90,6 @@ h1 {
   font-weight: bold;
 }
 
-.rate-box {
-  background: #fff;
-  border: 1px dashed #9bcdf0;
-  border-radius: 12px;
-  padding: 12px;
-  margin-top: 13px;
-  color: #5086ac;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-.rate-box strong { color: #258aca; }
-
 label {
   display: block;
   margin-top: 18px;
@@ -242,14 +229,6 @@ button:active { transform: scale(0.98); }
       <span>290 บาท</span>
       <span>759 กระดุม</span>
     </div>
-
-    <div class="rate-box">
-      <strong>♡ เรทราคาพิเศษ</strong><br>
-      1–9 แพค : 290 บาท/แพค<br>
-      10–19 แพค : 287 บาท/แพค<br>
-      20–29 แพค : 285 บาท/แพค<br>
-      30 แพคขึ้นไป : 283 บาท/แพค
-    </div>
   </div>
 
   <label>เลือกวิธีคำนวณ</label>
@@ -366,6 +345,7 @@ function showError(message) {
   document.getElementById("detail").textContent = "";
 }
 
+// DP สำหรับแพ็กเกจเล็ก: หาราคาถูกที่สุดที่ได้กระดุมถึงเป้าหมาย
 function buildSmallButtonDP(maxButtons) {
   const size = maxButtons + 1;
   const costs = new Int32Array(size).fill(-1);
@@ -403,6 +383,7 @@ function buildSmallButtonDP(maxButtons) {
   return { costs, c30, c90, c145 };
 }
 
+// คำนวณจากจำนวนกระดุมที่ต้องการ
 function calculateButtons(target) {
   const maxButtons = target + 334;
   const dp = buildSmallButtonDP(maxButtons);
@@ -464,6 +445,7 @@ function calculateButtons(target) {
   }
 }
 
+// คำนวณแพ็กเกจเล็กตามงบ แล้วเก็บผลที่ดีที่สุดของทุกงบ
 function buildSmallBudgetDP(budget) {
   const buttons = new Int32Array(budget + 1).fill(-1);
   const c30 = new Int32Array(budget + 1);
@@ -497,6 +479,7 @@ function buildSmallBudgetDP(budget) {
     }
   }
 
+  // เก็บคำตอบที่ดีที่สุดเมื่อมีงบไม่เกินแต่ละจำนวน
   const bestButtons = new Int32Array(budget + 1).fill(-1);
   const bestCost = new Int32Array(budget + 1);
   const best30 = new Int32Array(budget + 1);
@@ -535,6 +518,7 @@ function buildSmallBudgetDP(budget) {
   };
 }
 
+// คำนวณจากงบประมาณที่มี
 function calculateBudget(budget) {
   const dp = buildSmallBudgetDP(budget);
 
@@ -583,6 +567,7 @@ function calculateBudget(budget) {
   }
 }
 
+// แสดงผลลัพธ์ พร้อมบอกจำนวนแพคที่ต้องเลือกในร้าน
 function showResult(main, detail, smallCounts, bigCount, bigPrice) {
   document.getElementById("result").textContent = main;
 
